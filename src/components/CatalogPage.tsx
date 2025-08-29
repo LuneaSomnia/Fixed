@@ -9,34 +9,45 @@ export interface SeafoodItem {
   price: number;
   quantity: string;
   category: string;
+  categoryDisplay: string;
+  cleaningFee: number;
   image?: string;
 }
 
 const CatalogPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'fish' | 'prawns' | 'other'>('fish');
+  const [activeTab, setActiveTab] = useState<'fish' | 'whole-fish' | 'prawns' | 'other'>('fish');
   const [selectedItem, setSelectedItem] = useState<SeafoodItem | null>(null);
   const [showOrderModal, setShowOrderModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
   const fishItems: SeafoodItem[] = [
-    { id: 'tuna', name: 'Tuna', price: 600, quantity: '1 KG', category: 'fish' },
-    { id: 'red-snapper', name: 'Red Snapper', price: 600, quantity: '1 KG', category: 'fish' },
-    { id: 'white-snapper', name: 'White Snapper', price: 600, quantity: '1 KG', category: 'fish' },
-    { id: 'parrot-fish', name: 'Parrot Fish', price: 600, quantity: '1 KG', category: 'fish' },
-    { id: 'black-runner', name: 'Black Runner', price: 600, quantity: '1 KG', category: 'fish' },
-    { id: 'rockod-fish', name: 'Rockod Fish (Tewa)', price: 600, quantity: '1 KG', category: 'fish' },
-    { id: 'seabus', name: 'Seabus', price: 600, quantity: '1 KG', category: 'fish' },
-    { id: 'kingfish', name: 'KingFish', price: 600, quantity: '1 KG', category: 'fish' },
-    { id: 'kolekole', name: 'Kolekole', price: 600, quantity: '1 KG', category: 'fish' },
-    { id: 'pandu', name: 'Pandu', price: 600, quantity: '1 KG', category: 'fish' },
+    { id: 'tuna-fillet', name: 'Tuna', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'red-snapper-fillet', name: 'Red Snapper', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'white-snapper-fillet', name: 'White Snapper', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'parrot-fish-fillet', name: 'Parrot Fish', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'black-runner-fillet', name: 'Black Runner', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'rockod-fish-fillet', name: 'Rockod Fish (Tewa)', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'seabus-fillet', name: 'Seabus', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'kingfish-fillet', name: 'KingFish', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'kolekole-fillet', name: 'Kolekole', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'pandu-fillet', name: 'Pandu', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'baracuda-fillet', name: 'Baracuda', price: 650, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+  ];
+
+  const wholeFishItems: SeafoodItem[] = [
+    { id: 'taffi-whole', name: 'Taffi', price: 600, quantity: '1 KG', category: 'whole-fish', categoryDisplay: 'Whole Fish (🐟Small)', cleaningFee: 150 },
+    { id: 'changu-whole', name: 'Changu', price: 600, quantity: '1 KG', category: 'whole-fish', categoryDisplay: 'Whole Fish (🐟Small)', cleaningFee: 150 },
+    { id: 'kolekole-whole', name: 'Kolekole', price: 600, quantity: '1 KG', category: 'whole-fish', categoryDisplay: 'Whole Fish (🐟Small)', cleaningFee: 150 },
+    { id: 'red-snapper-whole', name: 'Red Snapper', price: 600, quantity: '1 KG', category: 'whole-fish', categoryDisplay: 'Whole Fish (🐟Small)', cleaningFee: 150 },
+    { id: 'white-snapper-whole', name: 'White Snapper', price: 600, quantity: '1 KG', category: 'whole-fish', categoryDisplay: 'Whole Fish (🐟Small)', cleaningFee: 150 },
   ];
 
   const prawnItems: SeafoodItem[] = [
-    { id: 'king-prawns', name: 'King Prawns', price: 2500, quantity: '1 KG', category: 'prawns' },
-    { id: 'queen-prawns', name: 'Queen Prawns', price: 1400, quantity: '1 KG', category: 'prawns' },
-    { id: 'tiger-prawns', name: 'Tiger Prawns', price: 2000, quantity: '1 KG', category: 'prawns' },
-    { id: 'jumbo-prawns', name: 'Jumbo Prawns', price: 3200, quantity: '1 KG', category: 'prawns' },
-    { id: 'mixed-prawns', name: 'Mixed Prawns', price: 1600, quantity: '1 KG', category: 'prawns' },
+    { id: 'king-prawns', name: 'King Prawns', price: 2500, quantity: '1 KG', category: 'prawns', categoryDisplay: 'Premium Prawns', cleaningFee: 300 },
+    { id: 'queen-prawns', name: 'Queen Prawns', price: 1400, quantity: '1 KG', category: 'prawns', categoryDisplay: 'Premium Prawns', cleaningFee: 300 },
+    { id: 'tiger-prawns', name: 'Tiger Prawns', price: 2000, quantity: '1 KG', category: 'prawns', categoryDisplay: 'Premium Prawns', cleaningFee: 300 },
+    { id: 'jumbo-prawns', name: 'Jumbo Prawns', price: 3200, quantity: '1 KG', category: 'prawns', categoryDisplay: 'Premium Prawns', cleaningFee: 300 },
+    { id: 'mixed-prawns', name: 'Mixed Prawns', price: 1600, quantity: '1 KG', category: 'prawns', categoryDisplay: 'Premium Prawns', cleaningFee: 300 },
   ];
 
   const otherItems: SeafoodItem[] = [
@@ -46,6 +57,8 @@ const CatalogPage: React.FC = () => {
       price: 800, 
       quantity: '1 KG', 
       category: 'other',
+      categoryDisplay: 'Other Seafood',
+      cleaningFee: 300,
       image: 'https://images.pexels.com/photos/5677743/pexels-photo-5677743.jpeg?auto=compress&cs=tinysrgb&w=400'
     },
     { 
@@ -54,6 +67,8 @@ const CatalogPage: React.FC = () => {
       price: 600, 
       quantity: '1 KG', 
       category: 'other',
+      categoryDisplay: 'Other Seafood',
+      cleaningFee: 300,
       image: 'https://images.pexels.com/photos/3296434/pexels-photo-3296434.jpeg?auto=compress&cs=tinysrgb&w=400'
     },
     { 
@@ -62,6 +77,8 @@ const CatalogPage: React.FC = () => {
       price: 2400, 
       quantity: '1 KG', 
       category: 'other',
+      categoryDisplay: 'Other Seafood',
+      cleaningFee: 300,
       image: 'https://images.pexels.com/photos/566344/pexels-photo-566344.jpeg?auto=compress&cs=tinysrgb&w=400'
     },
     { 
@@ -70,6 +87,8 @@ const CatalogPage: React.FC = () => {
       price: 550, 
       quantity: '1 KG', 
       category: 'other',
+      categoryDisplay: 'Other Seafood',
+      cleaningFee: 300,
       image: 'https://images.pexels.com/photos/5717463/pexels-photo-5717463.jpeg?auto=compress&cs=tinysrgb&w=400'
     },
     { 
@@ -78,16 +97,20 @@ const CatalogPage: React.FC = () => {
       price: 750, 
       quantity: '1 KG', 
       category: 'other',
+      categoryDisplay: 'Other Seafood',
+      cleaningFee: 300,
       image: 'https://images.pexels.com/photos/7788009/pexels-photo-7788009.jpeg?auto=compress&cs=tinysrgb&w=400'
     },
   ];
 
-  const allItems = [...fishItems, ...prawnItems, ...otherItems];
+  const allItems = [...fishItems, ...wholeFishItems, ...prawnItems, ...otherItems];
 
   const getCurrentItems = () => {
     switch (activeTab) {
       case 'fish':
         return fishItems;
+      case 'whole-fish':
+        return wholeFishItems;
       case 'prawns':
         return prawnItems;
       case 'other':
@@ -115,6 +138,7 @@ const CatalogPage: React.FC = () => {
   const getTabImage = (tab: string) => {
     switch (tab) {
       case 'fish':
+      case 'whole-fish':
         return 'https://images.pexels.com/photos/128408/pexels-photo-128408.jpeg?auto=compress&cs=tinysrgb&w=300';
       case 'prawns':
         return 'https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=300';
@@ -165,30 +189,50 @@ const CatalogPage: React.FC = () => {
 
         {/* Tabs - Only show if no search query */}
         {!searchQuery && (
-          <div className="flex flex-col md:flex-row gap-3 mb-6">
-            {/* Fish Tab */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+            {/* Fresh Fish Tab */}
             <div 
-              className={`relative flex-1 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 transform hover:scale-105 ${
+              className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 transform hover:scale-105 ${
                 activeTab === 'fish' ? 'ring-2 ring-orange-400 shadow-lg' : 'shadow-md hover:shadow-lg'
               }`}
               onClick={() => setActiveTab('fish')}
             >
               <img
                 src={getTabImage('fish')}
-                alt="Fresh Fish"
+                alt="Fresh Fish Fillet"
                 className="w-full h-20 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
               <div className="absolute bottom-2 left-3 right-3">
-                <h3 className="text-white text-base font-bold">Fresh Fish</h3>
-                <p className="text-white/90 text-xs">Premium catch from Diani waters</p>
+                <h3 className="text-white text-sm font-bold">Fresh Fish (🔪Fillet)</h3>
+                <p className="text-white/90 text-xs">Premium filleted catch</p>
+              </div>
+            </div>
+
+            {/* Whole Fish Tab */}
+            <div 
+              className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 transform hover:scale-105 ${
+                activeTab === 'whole-fish' ? 'ring-2 ring-orange-400 shadow-lg' : 'shadow-md hover:shadow-lg'
+              }`}
+              onClick={() => setActiveTab('whole-fish')}
+            >
+              <img
+                src={getTabImage('whole-fish')}
+                alt="Whole Small Fish"
+                className="w-full h-20 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
+              <div className="absolute bottom-2 left-3 right-3">
+                <h3 className="text-white text-sm font-bold">Whole Fish (🐟Small)</h3>
+                <p className="text-white/90 text-xs">Small whole fish varieties</p>
               </div>
             </div>
 
             {/* Prawns Tab */}
             <div 
-              className={`relative flex-1 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 transform hover:scale-105 ${
+              className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 transform hover:scale-105 ${
                 activeTab === 'prawns' ? 'ring-2 ring-orange-400 shadow-lg' : 'shadow-md hover:shadow-lg'
               }`}
               onClick={() => setActiveTab('prawns')}
@@ -201,14 +245,14 @@ const CatalogPage: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
               <div className="absolute bottom-2 left-3 right-3">
-                <h3 className="text-white text-base font-bold">Premium Prawns</h3>
+                <h3 className="text-white text-sm font-bold">Premium Prawns</h3>
                 <p className="text-white/90 text-xs">Various sizes and types available</p>
               </div>
             </div>
 
             {/* Other Seafood Tab */}
             <div 
-              className={`relative flex-1 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-cyan-500 to-blue-600 ${
+              className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-cyan-500 to-blue-600 ${
                 activeTab === 'other' ? 'ring-2 ring-orange-400 shadow-lg' : 'shadow-md hover:shadow-lg'
               }`}
               onClick={() => setActiveTab('other')}
@@ -216,8 +260,8 @@ const CatalogPage: React.FC = () => {
               <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
               <div className="relative h-20 flex items-center justify-center">
                 <div className="text-center">
-                  <Fish className="h-6 w-6 text-white mx-auto mb-1" />
-                  <h3 className="text-white text-base font-bold">Other Seafood</h3>
+                  <Fish className="h-5 w-5 text-white mx-auto mb-1" />
+                  <h3 className="text-white text-sm font-bold">Other Seafood</h3>
                   <p className="text-white/90 text-xs">Specialty items & delicacies</p>
                 </div>
               </div>
@@ -242,6 +286,7 @@ const CatalogPage: React.FC = () => {
               key={item.id}
               item={item}
               onPlaceOrder={handlePlaceOrder}
+              showCategory={!!searchQuery}
             />
           ))}
         </div>

@@ -25,7 +25,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ item, onClose }) => {
   const [orderId, setOrderId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const finalPrice = deliveryOption === 'cleaned' ? item.price + 300 : item.price;
+  const finalPrice = deliveryOption === 'cleaned' ? item.price + item.cleaningFee : item.price;
 
   const handleDetailsSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,6 +58,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ item, onClose }) => {
         itemPrice: item.price,
         deliveryType: deliveryOption,
         quantity: item.quantity,
+        cleaningFee: item.cleaningFee,
       };
 
       const response = await fetch('/api/orders/create', {
@@ -125,7 +126,10 @@ const OrderModal: React.FC<OrderModalProps> = ({ item, onClose }) => {
       <div className="bg-white rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl transform animate-in fade-in zoom-in">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-800">Order {item.name}</h2>
+          <div>
+            <h2 className="text-xl font-bold text-gray-800">Order {item.name}</h2>
+            <p className="text-sm text-gray-500">{item.categoryDisplay}</p>
+          </div>
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -213,7 +217,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ item, onClose }) => {
                     <div>
                       <h4 className="font-semibold text-gray-800">Cleaned & Packaged</h4>
                       <p className="text-gray-600 text-sm">Ready to cook, professionally cleaned</p>
-                      <p className="text-cyan-600 font-semibold">+KSh 300 processing fee</p>
+                      <p className="text-cyan-600 font-semibold">+KSh {item.cleaningFee} processing fee</p>
                     </div>
                     <Package className="h-6 w-6 text-cyan-600" />
                   </div>
@@ -253,6 +257,10 @@ const OrderModal: React.FC<OrderModalProps> = ({ item, onClose }) => {
                   <span className="font-semibold">{item.name}</span>
                 </div>
                 <div className="flex justify-between">
+                  <span className="text-gray-600">Category:</span>
+                  <span className="font-semibold text-sm">{item.categoryDisplay}</span>
+                </div>
+                <div className="flex justify-between">
                   <span className="text-gray-600">Quantity:</span>
                   <span className="font-semibold">{item.quantity}</span>
                 </div>
@@ -263,7 +271,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ item, onClose }) => {
                 {deliveryOption === 'cleaned' && (
                   <div className="flex justify-between">
                     <span className="text-gray-600">Processing Fee:</span>
-                    <span className="font-semibold">KSh 300</span>
+                    <span className="font-semibold">KSh {item.cleaningFee}</span>
                   </div>
                 )}
                 <div className="border-t pt-2 flex justify-between">

@@ -5,9 +5,10 @@ import { SeafoodItem } from './CatalogPage';
 interface ItemCardProps {
   item: SeafoodItem;
   onPlaceOrder: (item: SeafoodItem) => void;
+  showCategory?: boolean;
 }
 
-const ItemCard: React.FC<ItemCardProps> = ({ item, onPlaceOrder }) => {
+const ItemCard: React.FC<ItemCardProps> = ({ item, onPlaceOrder, showCategory = false }) => {
   return (
     <div className="bg-white/15 backdrop-blur-lg rounded-lg p-3 border border-white/25 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
       {/* Image or Icon */}
@@ -32,6 +33,14 @@ const ItemCard: React.FC<ItemCardProps> = ({ item, onPlaceOrder }) => {
             style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
           {item.name}
         </h3>
+        
+        {/* Category Display for Search Results */}
+        {showCategory && (
+          <p className="text-xs text-orange-300 font-medium drop-shadow"
+             style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
+            {item.categoryDisplay}
+          </p>
+        )}
         
         <div className="flex justify-between items-center">
           <span className="text-xs text-white/80"

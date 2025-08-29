@@ -7,6 +7,7 @@ export interface OrderPayload {
   itemPrice: number;
   deliveryType: 'asis' | 'cleaned';
   quantity: string;
+  cleaningFee?: number;
 }
 
 export interface OrderRecord extends OrderPayload {

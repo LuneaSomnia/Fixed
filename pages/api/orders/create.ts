@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Calculate total price
     const basePrice = payload.itemPrice;
-    const cleaningFee = payload.deliveryType === 'cleaned' ? 300 : 0;
+    const cleaningFee = payload.deliveryType === 'cleaned' ? (payload.cleaningFee || 300) : 0;
     const totalPrice = basePrice + cleaningFee;
 
     // Create order record
