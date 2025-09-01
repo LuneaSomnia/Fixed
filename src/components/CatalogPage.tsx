@@ -21,16 +21,16 @@ const CatalogPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const fishItems: SeafoodItem[] = [
-    { id: 'tuna-fillet', name: 'Tuna', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
-    { id: 'red-snapper-fillet', name: 'Red Snapper', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
-    { id: 'white-snapper-fillet', name: 'White Snapper', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
-    { id: 'parrot-fish-fillet', name: 'Parrot Fish', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
-    { id: 'black-runner-fillet', name: 'Black Runner', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
-    { id: 'rockod-fish-fillet', name: 'Rockod Fish (Tewa)', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
-    { id: 'seabus-fillet', name: 'Seabus', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
-    { id: 'kingfish-fillet', name: 'KingFish', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
-    { id: 'kolekole-fillet', name: 'Kolekole', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
-    { id: 'pandu-fillet', name: 'Pandu', price: 600, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'tuna-fillet', name: 'Tuna', price: 650, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'red-snapper-fillet', name: 'Red Snapper', price: 650, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'white-snapper-fillet', name: 'White Snapper', price: 650, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'parrot-fish-fillet', name: 'Parrot Fish', price: 650, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'black-runner-fillet', name: 'Black Runner', price: 650, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'rockod-fish-fillet', name: 'Rockod Fish (Tewa)', price: 650, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'seabus-fillet', name: 'Seabus', price: 650, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'kingfish-fillet', name: 'KingFish', price: 650, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'kolekole-fillet', name: 'Kolekole', price: 650, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
+    { id: 'pandu-fillet', name: 'Pandu', price: 650, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
     { id: 'baracuda-fillet', name: 'Baracuda', price: 650, quantity: '1 KG', category: 'fish', categoryDisplay: 'Fresh Fish (🔪Fillet)', cleaningFee: 300 },
   ];
 
